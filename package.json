@@ -1,13 +1,13 @@
 {
   "name": "advt-ui",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "开源一个投放系统的UI库",
   "keywords": [
     "vue",
     "UI"
   ],
   "type": "module",
-  "main": "dist/advt-ui.js",
+  "main": "dist/advt-ui.es.js",
   "files": [
     "dist"
   ],
