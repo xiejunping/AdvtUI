@@ -10,8 +10,9 @@
   </select-item>
 </template>
 <script>
+import { defineComponent } from 'vue'
 import SelectItem from '../selecter/select-item.vue'
-export default {
+export default defineComponent({
   name: 'Version',
   components: { SelectItem },
   props: {
@@ -57,7 +58,7 @@ export default {
       return [{ label: '不限', value: 'NONE' }, ...data]
     }
   }
-}
+})
 </script>
 <style lang="less" scoped>
 .c-select-item {

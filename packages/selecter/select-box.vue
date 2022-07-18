@@ -7,7 +7,7 @@
     <div v-for="item in data" :key="item.id">
       <div v-if="item.children && item.children.length" :class="itemClasses(item)" @click="$emit('on-child', {item, level})">
         <i-checkbox v-model="item.check" :indeterminate="itemIndeterminate(item)" :label="item.value" />
-        <i-icon type="RightOutlined" class="c-check-arrow" />
+        <right-outlined class="c-check-arrow" />
         <span class="c-item-checkbox c-cataract" @click="selectItem(item)"></span>
       </div>
       <i-checkbox v-else class="c-check-item" v-model="item.check" :label="item.value" />
@@ -15,7 +15,8 @@
   </div>
 </template>
 <script>
-import { Icon } from '../icon/index'
+import { defineComponent } from 'vue'
+import { RightOutlined } from '@ant-design/icons-vue'
 import ICheckbox from '../i-checkbox.vue'
 const computeChild = (list, Vue) => {
   list.forEach(item => {
@@ -27,9 +28,9 @@ const computeChild = (list, Vue) => {
     }
   })
 }
-export default {
+export default defineComponent({
   name: 'selectBox',
-  components: { 'i-icon': Icon, ICheckbox },
+  components: { ICheckbox, RightOutlined },
   props: {
     value: {
       type: [String, Number]
@@ -97,7 +98,7 @@ export default {
   mounted () {
     computeChild(this.data, this)
   }
-}
+})
 </script>
 <style lang="less" scoped>
 .c-cataract {
