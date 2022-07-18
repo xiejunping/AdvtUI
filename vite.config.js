@@ -1,20 +1,20 @@
-import path from 'path'
 import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import vueJsx from '@vitejs/plugin-vue-jsx'
-import Components from 'unplugin-vue-components/vite'
-import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
+import { createVuePlugin } from 'vite-plugin-vue2'
+import { viteCommonjs } from '@originjs/vite-plugin-commonjs'
+// import Components from 'unplugin-vue-components/vite'
+// import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    vue(),
-    vueJsx({}),
-    Components({
-      resolvers: [ AntDesignVueResolver() ]
-    })
+    createVuePlugin(),
+    viteCommonjs(),
+    // Components({
+    //   resolvers: [ AntDesignVueResolver() ]
+    // })
   ],
   build: {
+    sourcemap: false,
     rollupOptions: {
       external: ['vue'],
       output: {
@@ -24,7 +24,7 @@ export default defineConfig({
       }
     },
     lib: {
-      entry: path.resolve(__dirname, 'packages/index.js'),
+      entry: './packages/index.js',
       name: 'advt-ui'
     }
   }
