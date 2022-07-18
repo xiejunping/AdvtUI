@@ -10,11 +10,11 @@
   </select-item>
 </template>
 <script>
-import { defineComponent } from 'vue'
+import { Radio } from 'ant-design-vue'
 import SelectItem from '../selecter/select-item.vue'
-export default defineComponent({
+export default {
   name: 'Version',
-  components: { SelectItem },
+  components: { SelectItem, ARadio: Radio, ARadioGroup: Radio.Group },
   props: {
     value: {
       type: [String, Number],
@@ -58,7 +58,7 @@ export default defineComponent({
       return [{ label: '不限', value: 'NONE' }, ...data]
     }
   }
-})
+}
 </script>
 <style lang="less" scoped>
 .c-select-item {
