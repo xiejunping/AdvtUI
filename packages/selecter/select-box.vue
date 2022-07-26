@@ -16,7 +16,6 @@
 </template>
 <script>
 // import { defineComponent } from 'vue'
-import { Icon, Checkbox } from 'ant-design-vue'
 import ICheckbox from '../i-checkbox.vue'
 const computeChild = (list, Vue) => {
   list.forEach(item => {
@@ -30,7 +29,7 @@ const computeChild = (list, Vue) => {
 }
 export default {
   name: 'selectBox',
-  components: { ICheckbox, AIcon: Icon, ACheckbox: Checkbox },
+  components: { ICheckbox },
   props: {
     value: {
       type: [String, Number]

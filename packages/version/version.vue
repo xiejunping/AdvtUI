@@ -10,11 +10,10 @@
   </select-item>
 </template>
 <script>
-import { Radio } from 'ant-design-vue'
 import SelectItem from '../selecter/select-item.vue'
 export default {
   name: 'Version',
-  components: { SelectItem, ARadio: Radio, ARadioGroup: Radio.Group },
+  components: { SelectItem },
   props: {
     value: {
       type: [String, Number],

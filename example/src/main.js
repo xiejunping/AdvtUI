@@ -3,12 +3,11 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import AntDesignVue from 'ant-design-vue'
+import 'ant-design-vue/dist/antd.css'
 Vue.use(AntDesignVue)
 
-/* eslint-disable */
 import AdvtUI from 'advt-ui'
 import 'advt-ui/dist/style.css'
-/* eslint-disable */
 Vue.use(AdvtUI)
 
 // eslint-disable-next-line
