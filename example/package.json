@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "advt-ui": "0.0.7",
+    "ant-design-vue": "^1.7.8",
     "core-js": "^2.6.5",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
