@@ -2,10 +2,12 @@
   <div class="about">
     <h1>This is an about page</h1>
 
-    <version
-      v-model="iosOsv"
-      :data="iOSVersion"
-      title="iOS版本" />
+    <div class="m-version" style="text-align:left;">
+      <version
+        v-model="iosOsv"
+        :data="iOSVersion"
+        title="iOS版本" />
+    </div>
   </div>
 </template>
 <script>
@@ -14,9 +16,15 @@ export default {
   name: 'About',
   data () {
     return {
-      iosOsv: '9.3',
+      iosOsv: '10.3',
       iOSVersion
     }
   }
 }
 </script>
+<style>
+.m-version {
+  width: 400px;
+  margin: 0 auto;
+}
+</style>

@@ -1,20 +1,3 @@
-import Vue from "vue";
-function _mergeNamespaces(n, m) {
-  m.forEach(function(e) {
-    e && typeof e !== "string" && !Array.isArray(e) && Object.keys(e).forEach(function(k) {
-      if (k !== "default" && !(k in n)) {
-        var d = Object.getOwnPropertyDescriptor(e, k);
-        Object.defineProperty(n, k, d.get ? d : {
-          enumerable: true,
-          get: function() {
-            return e[k];
-          }
-        });
-      }
-    });
-  });
-  return Object.freeze(Object.defineProperty(n, Symbol.toStringTag, { value: "Module" }));
-}
 var render$5 = function() {
   var _vm = this;
   var _h = _vm.$createElement;
@@ -113,18 +96,18 @@ var render$5 = function() {
 var staticRenderFns$5 = [];
 ;
 var dragWeektime_vue_vue_type_style_index_0_scoped_true_lang = "";
-function normalizeComponent(scriptExports, render249, staticRenderFns2, functionalTemplate, injectStyles, scopeId, moduleIdentifier, shadowMode) {
-  var options2 = typeof scriptExports === "function" ? scriptExports.options : scriptExports;
-  if (render249) {
-    options2.render = render249;
-    options2.staticRenderFns = staticRenderFns2;
-    options2._compiled = true;
+function normalizeComponent(scriptExports, render2, staticRenderFns2, functionalTemplate, injectStyles, scopeId, moduleIdentifier, shadowMode) {
+  var options = typeof scriptExports === "function" ? scriptExports.options : scriptExports;
+  if (render2) {
+    options.render = render2;
+    options.staticRenderFns = staticRenderFns2;
+    options._compiled = true;
   }
   if (functionalTemplate) {
-    options2.functional = true;
+    options.functional = true;
   }
   if (scopeId) {
-    options2._scopeId = "data-v-" + scopeId;
+    options._scopeId = "data-v-" + scopeId;
   }
   var hook;
   if (moduleIdentifier) {
@@ -140,35 +123,39 @@ function normalizeComponent(scriptExports, render249, staticRenderFns2, function
         context._registeredComponents.add(moduleIdentifier);
       }
     };
-    options2._ssrRegister = hook;
+    options._ssrRegister = hook;
   } else if (injectStyles) {
     hook = shadowMode ? function() {
       injectStyles.call(
         this,
+<<<<<<< HEAD
         (options2.functional ? this.parent : this).$root.$options.shadowRoot
+=======
+        (options.functional ? this.parent : this).$root.$options.shadowRoot
+>>>>>>> 512566f2f7dfc72d1e9ab0db6dd850af29a315dd
       );
     } : injectStyles;
   }
   if (hook) {
-    if (options2.functional) {
-      options2._injectStyles = hook;
-      var originalRender = options2.render;
-      options2.render = function renderWithStyleInjection(h, context) {
+    if (options.functional) {
+      options._injectStyles = hook;
+      var originalRender = options.render;
+      options.render = function renderWithStyleInjection(h, context) {
         hook.call(context);
         return originalRender(h, context);
       };
     } else {
-      var existing = options2.beforeCreate;
-      options2.beforeCreate = existing ? [].concat(existing, hook) : [hook];
+      var existing = options.beforeCreate;
+      options.beforeCreate = existing ? [].concat(existing, hook) : [hook];
     }
   }
   return {
     exports: scriptExports,
-    options: options2
+    options
   };
 }
 const createArr = (len) => {
-  return Array.from(Array(len)).map((ret, id2) => id2);
+  return Array.from(Array(len)).map((ret, id) => id);
 };
 const __vue2_script$5 = {
   name: "DragWeektime",
@@ -295,7 +282,11 @@ var __component__$5 = /* @__PURE__ */ normalizeComponent(
   staticRenderFns$5,
   false,
   __vue2_injectStyles$5,
+<<<<<<< HEAD
   "182bc2f6",
+=======
+  "36169b38",
+>>>>>>> 512566f2f7dfc72d1e9ab0db6dd850af29a315dd
   null,
   null
 );
@@ -307,8 +298,8 @@ function __vue2_injectStyles$5(context) {
 var DragWeektime = /* @__PURE__ */ function() {
   return __component__$5.exports;
 }();
-DragWeektime.install = function(Vue2) {
-  Vue2.component(DragWeektime.name, DragWeektime);
+DragWeektime.install = function(Vue) {
+  Vue.component(DragWeektime.name, DragWeektime);
 };
 var render$4 = function() {
   var _vm = this;
@@ -352,7 +343,11 @@ var __component__$4 = /* @__PURE__ */ normalizeComponent(
   staticRenderFns$4,
   false,
   __vue2_injectStyles$4,
+<<<<<<< HEAD
   "3d2f2883",
+=======
+  "20eb1028",
+>>>>>>> 512566f2f7dfc72d1e9ab0db6dd850af29a315dd
   null,
   null
 );
@@ -364,6 +359,7 @@ function __vue2_injectStyles$4(context) {
 var SelectItem = /* @__PURE__ */ function() {
   return __component__$4.exports;
 }();
+<<<<<<< HEAD
 var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
 function getDefaultExportFromCjs(x) {
   return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, "default") ? x["default"] : x;
@@ -63351,6 +63347,8 @@ var install$1 = function install6(Vue2) {
 if (typeof window !== "undefined" && window.Vue) {
   install$1(window.Vue);
 }
+=======
+>>>>>>> 512566f2f7dfc72d1e9ab0db6dd850af29a315dd
 var render$3 = function() {
   var _vm = this;
   var _h = _vm.$createElement;
@@ -63481,21 +63479,21 @@ var render$2 = function() {
 var staticRenderFns$2 = [];
 ;
 var selectBox_vue_vue_type_style_index_0_scoped_true_lang = "";
-const computeChild = (list, Vue2) => {
+const computeChild = (list, Vue) => {
   list.forEach((item) => {
     if (item.children && item.children.length) {
       const child = item.children;
       if (child.every((ret) => ret.check))
-        Vue2.$set(item, "check", true);
+        Vue.$set(item, "check", true);
       else
-        Vue2.$set(item, "check", false);
-      child && computeChild(child, Vue2);
+        Vue.$set(item, "check", false);
+      child && computeChild(child, Vue);
     }
   });
 };
 const __vue2_script$2 = {
   name: "selectBox",
-  components: { ICheckbox, AIcon: Icon$1, ACheckbox: Checkbox },
+  components: { ICheckbox },
   props: {
     value: {
       type: [String, Number]
@@ -63539,8 +63537,8 @@ const __vue2_script$2 = {
       console.log(this.data);
     },
     itemIndeterminate(child) {
-      const hasChild = (meta2) => {
-        return meta2.children.reduce((sum, item) => {
+      const hasChild = (meta) => {
+        return meta.children.reduce((sum, item) => {
           let foundChilds = [];
           if (item.check)
             sum.push(item);
@@ -63549,9 +63547,9 @@ const __vue2_script$2 = {
           return sum.concat(foundChilds);
         }, []);
       };
-      const some2 = hasChild(child).length > 0;
+      const some = hasChild(child).length > 0;
       const every = child.children && child.children.every((ret) => ret.check);
-      return some2 && !every;
+      return some && !every;
     }
   },
   watch: {
@@ -63573,7 +63571,11 @@ var __component__$2 = /* @__PURE__ */ normalizeComponent(
   staticRenderFns$2,
   false,
   __vue2_injectStyles$2,
+<<<<<<< HEAD
   "ea3d3212",
+=======
+  "486182da",
+>>>>>>> 512566f2f7dfc72d1e9ab0db6dd850af29a315dd
   null,
   null
 );
@@ -63718,29 +63720,29 @@ const __vue2_script$1 = {
     handleClose(name) {
       this.$emit("on-delete", { list: this.data, name });
     },
-    selectAll({ level: level2, check, cat }) {
-      let index2 = level2 - 2;
-      let current2 = index2 > -1 ? this.resource[index2].current : "";
-      cat && (current2 = cat);
+    selectAll({ level, check, cat }) {
+      let index2 = level - 2;
+      let current = index2 > -1 ? this.resource[index2].current : "";
+      cat && (current = cat);
       this.$emit("on-select", {
         check,
-        current: current2,
+        current,
         list: this.data
       });
     },
     pushChild(params) {
-      const { item, level: level2 } = params;
+      const { item, level } = params;
       const len = this.resource.length;
-      if (level2 <= len - 1) {
-        this.resource.splice(level2, len - level2);
+      if (level <= len - 1) {
+        this.resource.splice(level, len - level);
       }
       this.resource.push({
         data: item.children,
         current: "",
-        level: level2 + 1,
-        title: this.title[level2] || item.value
+        level: level + 1,
+        title: this.title[level] || item.value
       });
-      this.resource[level2 - 1].current = item.value;
+      this.resource[level - 1].current = item.value;
     }
   },
   created() {
@@ -63754,7 +63756,11 @@ var __component__$1 = /* @__PURE__ */ normalizeComponent(
   staticRenderFns$1,
   false,
   __vue2_injectStyles$1,
+<<<<<<< HEAD
   "a08e85b8",
+=======
+  "ba832ea4",
+>>>>>>> 512566f2f7dfc72d1e9ab0db6dd850af29a315dd
   null,
   null
 );
@@ -63766,10 +63772,10 @@ function __vue2_injectStyles$1(context) {
 var Selecter = /* @__PURE__ */ function() {
   return __component__$1.exports;
 }();
-Selecter.install = function(Vue2) {
-  Vue2.component(Selecter.name, Selecter);
+Selecter.install = function(Vue) {
+  Vue.component(Selecter.name, Selecter);
 };
-var render248 = function() {
+var render = function() {
   var _vm = this;
   var _h = _vm.$createElement;
   var _c = _vm._self._c || _h;
@@ -63800,7 +63806,7 @@ var staticRenderFns = [];
 var version_vue_vue_type_style_index_0_scoped_true_lang = "";
 const __vue2_script = {
   name: "Version",
-  components: { SelectItem, ARadio: Radio, ARadioGroup: Radio.Group },
+  components: { SelectItem },
   props: {
     value: {
       type: [String, Number],
@@ -63835,24 +63841,32 @@ const __vue2_script = {
       return this.android ? "Android" : "iOS";
     },
     versions() {
-      const data109 = this.data.map((ret) => {
+      const data = this.data.map((ret) => {
         return {
           label: `${this.vername} ${ret}\u53CA\u4EE5\u4E0A`,
           value: ret
         };
       });
-      return [{ label: "\u4E0D\u9650", value: "NONE" }, ...data109];
+      return [{ label: "\u4E0D\u9650", value: "NONE" }, ...data];
     }
   }
 };
 const __cssModules = {};
 var __component__ = /* @__PURE__ */ normalizeComponent(
   __vue2_script,
+<<<<<<< HEAD
   render248,
   staticRenderFns,
   false,
   __vue2_injectStyles,
   "89321ea8",
+=======
+  render,
+  staticRenderFns,
+  false,
+  __vue2_injectStyles,
+  "1537e450",
+>>>>>>> 512566f2f7dfc72d1e9ab0db6dd850af29a315dd
   null,
   null
 );
@@ -63864,22 +63878,22 @@ function __vue2_injectStyles(context) {
 var Version = /* @__PURE__ */ function() {
   return __component__.exports;
 }();
-Version.install = function(Vue2) {
-  Vue2.component(Version.name, Version);
+Version.install = function(Vue) {
+  Vue.component(Version.name, Version);
 };
-const components2 = [
+const components = [
   DragWeektime,
   Selecter,
   Version,
   ICheckbox
 ];
-const install7 = (Vue2) => {
-  components2.forEach((component) => {
-    Vue2.component(component.name, component);
+const install = (Vue) => {
+  components.forEach((component) => {
+    Vue.component(component.name, component);
   });
 };
 var index = {
-  install: install7,
+  install,
   DragWeektime,
   Selecter,
   Version,
