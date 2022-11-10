@@ -2,20 +2,24 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import routes from './routes'
 
-const isProd = process.env.NODE_ENV === 'production'
+const isProd = import.meta.env.PROD
 
 Vue.use(VueRouter)
+
 const router = new VueRouter({
   mode: 'history',
   routes
 })
 
-router.beforeEach(() => {})
+router.beforeEach((to, from, next) => {
+  next()
+})
 
-router.afterEach(() => {
-
+router.afterEach((to) => {
   if (isProd) {
-
+    // 百度统计上报
+    window._hmt.push(['_setAutoPageview', false])
+    window._hmt.push(['_trackPageview', to.fullPath])
   }
 })
 
