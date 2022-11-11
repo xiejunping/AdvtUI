@@ -77,6 +77,11 @@ button:focus-visible {
   text-align: center;
 }
 
+.g-container {
+  max-width: 1190px;
+  margin: 0 auto;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
