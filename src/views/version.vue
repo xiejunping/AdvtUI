@@ -1,8 +1,14 @@
 <template>
   <div class="page">
-
+    <version :data="iOSVersion" title="iOS版本" />
+    <span>{{ios_osv}}</span>
+    <br>
     <version v-model="ios_osv" :data="iOSVersion" title="iOS版本" />
-    <version v-model="ios_osv" :data="iOSVersion" title="iOS版本" />
+    <span>{{ios_osv}}</span>
+    <br>
+    <version v-model="android_osv" :data="androidVersion" title="Andriod版本" />
+    <span>{{android_osv}}</span>
+    <br>
   </div>
 </template>
 <script>
@@ -12,8 +18,9 @@ export default {
   data () {
     return {
       ios_osv: '9.3',
-      android_osv: '',
-      iOSVersion: iOSVersion,
+      android_osv: '0.0',
+      iOSVersion,
+      androidVersion,
     }
   }
 }
