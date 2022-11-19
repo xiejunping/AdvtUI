@@ -8,7 +8,7 @@ This template should help get you started developing with Vue 3 in Vite. The tem
 
 上面本来是用vite3创的项目，一点点改造使用vue2，真的坑得不行
 
-老的vue2组件，想用vite打包组件，但是vue2做不到按需引入打包，所以使用全局引入 `ant-design-vue` 组件后再 `use` 本UI库，湎序不能反了
+老的vue2组件，想用vite打包组件，但是vue2做不到按需引入打包，所以使用全局引入 `ant-design-vue` 组件后再 `use` 本UI库，顺序不能反了
 
 
 ```js
