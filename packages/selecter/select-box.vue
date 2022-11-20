@@ -45,7 +45,7 @@ export default {
     itemClasses () {
       return item => {
         const cls = ['c-check-item']
-        item.value === this.value && cls.push('active')
+        item.id === this.value && cls.push('active')
         return cls
       }
     },
@@ -65,12 +65,8 @@ export default {
       this.$emit('on-select', {
         check: !item.check,
         level: this.level,
-        cat: item.value
+        cat: item.id
       })
-    },
-    selectItem1 (e) {
-      console.log(e)
-      console.log(this.data)
     },
     itemIndeterminate (child) {
       const hasChild = (meta) => {

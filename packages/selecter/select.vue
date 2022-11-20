@@ -21,7 +21,7 @@
       <a-col :span="7" offset="1">
         <select-item
           v-if="resultLen && transfer"
-          title="已选"
+          :title="`已选${resultLen?'('+result.length+')':''}`"
           clear
           @on-clear="$emit('on-clear', {list: data})">
           <div
@@ -31,7 +31,7 @@
             <a-tag
               closable
               class="c-tag-item"
-              @close="handleClose(item.value)">{{item.value}}</a-tag>
+              @close="handleClose(item.id)">{{item.value}}</a-tag>
           </div>
         </select-item>
       </a-col>
@@ -86,17 +86,17 @@ export default {
       this.resource = []
       this.resource.push({
         data: this.data,
-        current: '',
+        current: 0,
         level: 1,
         title: this.title[0]
       })
     },
-    handleClose (name) {
-      this.$emit('on-delete', { list: this.data, name })
+    handleClose (id) {
+      this.$emit('on-delete', { list: this.data, id })
     },
     selectAll ({ level, check, cat }) {
       let index = level - 2
-      let current = index > -1 ? this.resource[index].current : ''
+      let current = index > -1 ? this.resource[index].current : 0
       cat && (current = cat)
       this.$emit('on-select', {
         check,
@@ -112,11 +112,11 @@ export default {
       }
       this.resource.push({
         data: item.children,
-        current: '',
+        current: 0,
         level: level + 1,
         title: this.title[level] || item.value
       })
-      this.resource[level - 1].current = item.value
+      this.resource[level - 1].current = item.id
     }
   },
   created () {
@@ -129,12 +129,12 @@ export default {
   width: 100%;
 }
 .c-tag-item {
-  width: 90%;
+  width: 95%;
   margin: 8px 8px 0;
   padding: 2px 6px;
   display: block;
   height: 28px;
-  :deep(.anticon-close) {
+  /deep/ .anticon-close {
     float: right;
     line-height: 25px;
   }
