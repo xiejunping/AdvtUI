@@ -2,6 +2,7 @@
   <div class="page">
     <selecter v-model="city" :data="cityData" :title="['省份', '城市', '县市']" /><br>
     {{city}}
+    <!-- <selecter v-model="" /> -->
   </div>
 </template>
 <script>
