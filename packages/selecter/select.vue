@@ -23,7 +23,7 @@
           v-if="resultLen && transfer"
           :title="`已选${resultLen?'('+result.length+')':''}`"
           clear
-          @on-clear="$emit('on-clear', {list: data})">
+          @on-clear="clearTag({list: data})">
           <div
             v-for="item in result"
             :key="item.id"
@@ -39,6 +39,7 @@
   </div>
 </template>
 <script>
+import { getKeyOfData, findCheck, clearTagOfData } from '../utils/assets'
 import SelectItem from './select-item.vue'
 import SelectBox from './select-box.vue'
 export default {
@@ -69,10 +70,12 @@ export default {
       return this.resource.length > 1 ? 24 / this.resource.length : 12
     },
     result () {
-      return this.value
+      const checkItems = findCheck(this.data)
+      this.$emit('input', checkItems.map(ret => ret.id))
+      return checkItems
     },
     resultLen () {
-      return Boolean(this.value.length)
+      return Boolean(this.result.length)
     }
   },
   watch: {
@@ -91,14 +94,20 @@ export default {
         title: this.title[0]
       })
     },
+    // 删除已选
     handleClose (id) {
-      this.$emit('on-delete', { list: this.data, id })
+      const data = getKeyOfData(this.data, 'id', id)
+      if (data.children && data.children.length) {
+        this.selectFinalAll({ list: this.data, check: false, id: data.value })
+      } else {
+        this.$set(data, 'check', false)
+      }
     },
     selectAll ({ level, check, cat }) {
       let index = level - 2
       let current = index > -1 ? this.resource[index].current : 0
       cat && (current = cat)
-      this.$emit('on-select', {
+      this.selectFinalAll({
         check,
         current,
         list: this.data
@@ -117,6 +126,26 @@ export default {
         title: this.title[level] || item.value
       })
       this.resource[level - 1].current = item.id
+    },
+    // 全选
+    selectFinalAll ({ list, check = true, current = '' }) {
+      let data
+      // 无限递归
+      const setAllChecked = (data, check) => {
+        data.forEach(ret => {
+          if (ret.children && ret.children.length) setAllChecked(ret.children, check)
+          this.$set(ret, 'check', check)
+        })
+      }
+      if (current) {
+        const item = getKeyOfData(list, 'id', current)
+        data = item.children
+      } else data = list
+      setAllChecked(data, check)
+    },
+    // 清空全部
+    clearTag ({ list }) {
+      clearTagOfData(list, this)
     }
   },
   created () {
