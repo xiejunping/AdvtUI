@@ -2,51 +2,50 @@
   <div class="c-weektime">
     <div class="c-schedue"></div>
     <div :class="{'c-schedue': true, 'c-schedue-notransi': mode}" :style="styleValue"></div>
-
-    <table class="c-weektime-table" :class="{'c-min-table': colspan < 2}">
-      <thead class="c-weektime-head">
-        <tr>
-          <th rowspan="8" class="week-td">星期/时间</th>
-          <th :colspan="12 * colspan">00:00 - 12:00</th>
-          <th :colspan="12 * colspan">12:00 - 24:00</th>
-        </tr>
-        <tr>
-          <td v-for="t in theadArr" :key="t" :colspan="colspan">{{t}}</td>
-        </tr>
-      </thead>
-      <tbody class="c-weektime-body">
-        <tr v-for="t in data" :key="t.row">
-          <td>{{t.value}}</td>
-          <td
-            v-for="n in t.child"
-            :key="`${n.row}-${n.col}`"
-            :data-week="n.row"
-            :data-time="n.col"
-            @mouseenter="cellEnter(n)"
-            @mousedown="cellDown(n)"
-            @mouseup="cellUp(n)"
-            :class="selectClasses(n)"
-            class="weektime-atom-item">
-          </td>
-        </tr>
-        <tr>
-          <td colspan="49" class="c-weektime-preview">
-            <div class="g-clearfix c-weektime-con">
-              <span class="g-pull-left">{{selectState ? '已选择时间段' : '可拖动鼠标选择时间段'}}</span>
-              <a class="g-pull-right" @click.prevent="clearWeektime">清空选择</a>
-            </div>
-            <div v-if="selectState" class="c-weektime-time">
-              <div v-for="t in selectValue" :key="t.id">
-                <p v-if="t.value">
-                  <span class="g-tip-text">{{t.week}}：</span>
-                  <span>{{t.value}}</span>
-                </p>
-              </div>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="c-weektime-wrap">
+      <table class="c-weektime-table" :class="{'c-min-table': colspan < 2}">
+        <thead class="c-weektime-head">
+          <tr>
+            <th rowspan="8" class="week-td">星期/时间</th>
+            <th :colspan="12 * colspan">00:00 - 12:00</th>
+            <th :colspan="12 * colspan">12:00 - 24:00</th>
+          </tr>
+          <tr>
+            <td v-for="t in theadArr" :key="t" :colspan="colspan">{{t}}</td>
+          </tr>
+        </thead>
+        <tbody class="c-weektime-body">
+          <tr v-for="t in data" :key="t.row">
+            <td>{{t.value}}</td>
+            <td
+              v-for="n in t.child"
+              :key="`${n.row}-${n.col}`"
+              :data-week="n.row"
+              :data-time="n.col"
+              @mouseenter="cellEnter(n)"
+              @mousedown="cellDown(n)"
+              @mouseup="cellUp(n)"
+              :class="selectClasses(n)"
+              class="weektime-atom-item">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="c-weektime-preview">
+        <div class="g-clearfix c-weektime-con">
+          <span class="g-pull-left">{{selectState ? '已选择时间段' : '可拖动鼠标选择时间段'}}</span>
+          <a class="g-pull-right" @click.prevent="clearWeektime">清空选择</a>
+        </div>
+        <div v-if="selectState" class="c-weektime-time">
+          <div v-for="t in selectValue" :key="t.id">
+            <p v-if="t.value">
+              <span class="g-tip-text">{{t.week}}：</span>
+              <span>{{t.value}}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -258,6 +257,9 @@ export default {
 .c-schedue-notransi {
   transition: width .12s ease, height .12s ease, top .12s ease, left .12s ease;
 }
+.c-weektime-wrap {
+  display: flex;
+}
 .c-weektime-table {
   border-collapse: collapse;
   th {
@@ -293,23 +295,30 @@ export default {
       }
     }
   }
-  .c-weektime-preview {
+}
+.c-weektime-preview {
+  min-width: 250px;
+  max-width: 420px;
+  line-height: 2.4em;
+  padding: 0 10px;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #dee4f5;
+  border-left-width: 0;
+  .c-weektime-con {
+    line-height: 32px;
+    user-select: none;
+    height: 60px;
+  }
+  .c-weektime-time {
+    text-align: left;
     line-height: 2.4em;
-    padding: 0 10px;
-    font-size: 14px;
-    .c-weektime-con {
-      line-height: 46px;
-      user-select: none;
-    }
-    .c-weektime-time {
-      text-align: left;
-      line-height: 2.4em;
-      p {
-        max-width: 625px;
-        line-height: 1.4em;
-        word-break: break-all;
-        margin-bottom: 8px;
-      }
+    p {
+      max-width: 625px;
+      line-height: 1.4em;
+      word-break: break-all;
+      margin-bottom: 8px;
     }
   }
 }

@@ -1,5 +1,7 @@
 <template>
   <div class="page">
+    <h2>Version 平台版本选择器</h2>
+
     <version :data="iOSVersion" title="iOS版本" />
     <span>{{ios_osv}}</span>
     <br>

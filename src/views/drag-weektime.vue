@@ -1,9 +1,11 @@
 <template>
   <div class="page">
+    <h2>Drag-Weektime 时段选择器</h2>
 
     <drag-weektime v-model="schedule_time" /><br>
     {{schedule_time}}
     <drag-weektime v-model="schedule_time1" :colspan="1" /><br>
+    {{schedule_time1}}
   </div>
 </template>
 <script>
