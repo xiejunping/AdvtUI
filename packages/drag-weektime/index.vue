@@ -154,7 +154,7 @@ export default {
   },
   methods: {
     cellEnter (item) {
-      const ele = document.querySelector(`td[data-week='${item.row}'][data-time='${item.col}']`)
+      const ele = this.$el.querySelector(`td[data-week='${item.row}'][data-time='${item.col}']`)
       if (ele && !this.mode) {
         this.left = ele.offsetLeft
         this.top = ele.offsetTop
@@ -181,7 +181,7 @@ export default {
       }
     },
     cellDown (item) {
-      const ele = document.querySelector(`td[data-week='${item.row}'][data-time='${item.col}']`)
+      const ele = this.$el.querySelector(`td[data-week='${item.row}'][data-time='${item.col}']`)
       this.check = Boolean(item.check)
       this.mode = 1
       if (ele) {

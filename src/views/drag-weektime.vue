@@ -1,7 +1,7 @@
 <template>
   <div class="page">
 
-    <drag-weektime v-model="schedule_time" @on-clear="clearWeektime" /><br>
+    <drag-weektime v-model="schedule_time" /><br>
     {{schedule_time}}
     <drag-weektime v-model="schedule_time1" :colspan="1" /><br>
   </div>
