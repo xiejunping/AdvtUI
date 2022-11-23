@@ -50,17 +50,61 @@
   </div>
 </template>
 <script>
+import { formatDate } from '../utils/'
+
+const dayHour = 24 // 一天24h
+const weekArr = ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日']
 const createArr = len => {
   return Array.from(Array(len)).map((ret, id) => id)
+}
+const formatWeektime = col => {
+  const timestamp = 1542384000000 // '2018-11-17 00:00:00'
+  const beginstamp = timestamp + col * 1800000 // col * 30 * 60 * 1000
+  const endstamp = beginstamp + 1800000
+
+  const begin = formatDate(new Date(beginstamp), 'hh:mm')
+  const end = formatDate(new Date(endstamp), 'hh:mm')
+  return `${begin}~${end}`
+}
+// 反显
+function reverWeektime (schedule, weektimeData, Vue) {
+  let idx = 0
+  for (let i = 0; i < weektimeData.length; i++) {
+    const children = weektimeData[i].child
+    for (let j = 0; j < children.length; j++) {
+      const n = schedule.substr(idx, 1)
+      Vue.$set(weektimeData[i].child[j], 'check', Boolean(parseInt(n)))
+      idx++
+    }
+  }
+}
+function splicing (list) {
+  let same
+  let i = -1
+  let len = list.length
+  let arr = []
+
+  if (!len) return
+  while (++i < len) {
+    const item = list[i]
+    if (item.check) {
+      if (item.check !== Boolean(same)) {
+        arr.push(...['、', item.begin, '~', item.end])
+      } else if (arr.length) {
+        arr.pop()
+        arr.push(item.end)
+      }
+    }
+    same = Boolean(item.check)
+  }
+  arr.shift()
+  return arr.join('')
 }
 export default {
   name: 'DragWeektime',
   props: {
     value: {
-      type: Array
-    },
-    data: {
-      type: Array
+      type: String
     },
     colspan: {
       type: Number,
@@ -78,11 +122,39 @@ export default {
         top: `${this.top}px`
       }
     },
+    data () {
+      return weekArr.map((ret, index) => {
+        const children = (ret, row, max) => {
+          return createArr(max).map((t, col) => {
+            return {
+              week: ret,
+              value: formatWeektime(col),
+              begin: formatWeektime(col).split('~')[0],
+              end: formatWeektime(col).split('~')[1],
+              row: row,
+              col: col
+            }
+          })
+        }
+        return {
+          value: ret,
+          row: index,
+          child: children(ret, index, dayHour * this.colspan)
+        }
+      })
+    },
     selectValue () {
-      return this.value
+      reverWeektime(this.value, this.data, this)
+      return this.data.map(item => {
+        return {
+          id: item.row,
+          week: item.value,
+          value: splicing(item.child)
+        }
+      })
     },
     selectState () {
-      return this.value.some(ret => ret.value)
+      return this.selectValue.some(ret => ret.value)
     },
     selectClasses () {
       return n => n.check ? 'ui-selected' : ''
@@ -164,11 +236,8 @@ export default {
       mode: 0,
       row: 0,
       col: 0,
-      theadArr: []
+      theadArr: createArr(dayHour)
     }
-  },
-  created () {
-    this.theadArr = createArr(24)
   }
 }
 </script>

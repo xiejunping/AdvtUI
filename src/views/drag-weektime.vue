@@ -1,11 +1,21 @@
 <template>
-  <div class="">
+  <div class="page">
 
-    <drag-weektime
-      v-model="mult_timeRange"
-      :data="weektimeData"
-      v-peach:event="{category: 'components', action: 'dragWeektime'}"
-      @on-clear="clearWeektime">
-    </drag-weektime>
+    <drag-weektime v-model="schedule_time" @on-clear="clearWeektime" /><br>
+    {{schedule_time}}
+    <drag-weektime v-model="schedule_time1" :colspan="1" /><br>
   </div>
 </template>
+<script>
+export default {
+  data () {
+    return {
+      schedule_time: '000000000000000000000001111000000000000000000000000000000000000000000001111000000000000000000000000000000000000000000001111000000000000000000000000000000000000000000001111000000000000000000000000000000000000000000001111000000000000000000000000000000000000000000001111000000000000000000000000000000000000000000001111000000000000000000000',
+      schedule_time1: '000000000000000000000001111000000000000000000000000000000000000000000001111000000000000000000000000000000000000000000001111000000000000000000000000000000000000000000'
+    }
+  },
+  methods: {
+    clearWeektime() {}
+  }
+}
+</script>
