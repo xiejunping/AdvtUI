@@ -10,6 +10,11 @@ export default [
     component: () => import(/* webpackChunkName: "dragWeektime" */ '../views/drag-weektime.vue')
   },
   {
+    path: '/drop-tree',
+    name: 'dropTree',
+    component: () => import(/* webpackChunkName: "dropTree" */ '../views/drop-tree.vue')
+  },
+  {
     path: '/selecter',
     name: 'selecter',
     component: () => import(/* webpackChunkName: "selecter" */ '../views/selecter.vue')

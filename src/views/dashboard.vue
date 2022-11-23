@@ -8,7 +8,7 @@
         <router-link to="/drag-weektime">Drag-Weektime</router-link><br>
         <router-link to="/selecter">Selecter</router-link><br>
         <router-link to="/version">Version</router-link><br>
-        <router-link to="/drag-weektime">Drag-Weektime</router-link><br>
+        <router-link to="/drop-tree">Drop-Tree</router-link><br>
       </a-col>
       <a-col :span="8">
         <div><span> 布局 </span></div>

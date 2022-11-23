@@ -31,12 +31,13 @@
           </tr>
         </tbody>
       </table>
-      <div class="c-weektime-preview">
+      <div class="c-weektime-preview" v-if="selectState">
         <div class="g-clearfix c-weektime-con">
-          <span class="g-pull-left">{{selectState ? '已选择时间段' : '可拖动鼠标选择时间段'}}</span>
+          <!-- {{selectState ? '已选择时间段' : '可拖动鼠标选择时间段'}} -->
+          <span class="g-pull-left">已选择时间段</span>
           <a class="g-pull-right" @click.prevent="clearWeektime">清空选择</a>
         </div>
-        <div v-if="selectState" class="c-weektime-time">
+        <div class="c-weektime-time">
           <div v-for="t in selectValue" :key="t.id">
             <p v-if="t.value">
               <span class="g-tip-text">{{t.week}}：</span>
