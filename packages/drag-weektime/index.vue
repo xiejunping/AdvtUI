@@ -66,18 +66,6 @@ const formatWeektime = col => {
   const end = formatDate(new Date(endstamp), 'hh:mm')
   return `${begin}~${end}`
 }
-// 反显
-function reverWeektime (schedule, weektimeData, Vue) {
-  let idx = 0
-  for (let i = 0; i < weektimeData.length; i++) {
-    const children = weektimeData[i].child
-    for (let j = 0; j < children.length; j++) {
-      const n = schedule.substr(idx, 1)
-      Vue.$set(weektimeData[i].child[j], 'check', Boolean(parseInt(n)))
-      idx++
-    }
-  }
-}
 function splicing (list) {
   let same
   let i = -1
@@ -123,10 +111,15 @@ export default {
       }
     },
     data () {
+      let idx = 0
       return weekArr.map((ret, index) => {
         const children = (ret, row, max) => {
           return createArr(max).map((t, col) => {
+            const n = this.value.substr(idx, 1)
+            const check = Boolean(parseInt(n))
+            idx++
             return {
+              check,
               week: ret,
               value: formatWeektime(col),
               begin: formatWeektime(col).split('~')[0],
@@ -144,7 +137,6 @@ export default {
       })
     },
     selectValue () {
-      reverWeektime(this.value, this.data, this)
       return this.data.map(item => {
         return {
           id: item.row,
@@ -225,6 +217,10 @@ export default {
           }
         })
       })
+      const data = this.data.map(item => {
+        return item.child.map(ret => ret.check ? '1' : '0').join('')
+      }).join('')
+      this.$emit('input', data)
     }
   },
   data () {
