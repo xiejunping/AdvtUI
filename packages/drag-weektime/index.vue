@@ -33,7 +33,7 @@
           <td colspan="49" class="c-weektime-preview">
             <div class="g-clearfix c-weektime-con">
               <span class="g-pull-left">{{selectState ? '已选择时间段' : '可拖动鼠标选择时间段'}}</span>
-              <a class="g-pull-right" @click.prevent="$emit('on-clear')">清空选择</a>
+              <a class="g-pull-right" @click.prevent="clearWeektime">清空选择</a>
             </div>
             <div v-if="selectState" class="c-weektime-time">
               <div v-for="t in selectValue" :key="t.id">
@@ -221,6 +221,9 @@ export default {
         return item.child.map(ret => ret.check ? '1' : '0').join('')
       }).join('')
       this.$emit('input', data)
+    },
+    clearWeektime () {
+      this.$emit('input', createArr(48*7).map(r => '0').join(''))
     }
   },
   data () {
