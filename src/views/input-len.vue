@@ -22,7 +22,7 @@ export default {
     return {
       name: '',
       name1: '一个汉字',
-      name2: '123三个数字,逗号不满向上取整'
+      name2: '123三个数字等于一个中文'
     }
   }
 }
