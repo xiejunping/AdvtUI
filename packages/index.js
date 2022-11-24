@@ -5,6 +5,9 @@ import Version from './version/index.vue'
 import Steper from './steper/index.vue'
 import InputLen from './len/input.vue'
 import TextareaLen from './len/textarea.vue'
+import Mixcheck from './mixcheck/index.vue'
+import RadioItem from './mixcheck/radio-item/index.vue'
+import CheckItem from './mixcheck/check-item/index.vue'
 import ICheckbox from './i-checkbox.vue'
 
 const components = [
@@ -15,6 +18,9 @@ const components = [
   InputLen,
   TextareaLen,
   Version,
+  Mixcheck,
+  RadioItem,
+  CheckItem,
   ICheckbox
 ]
 
@@ -33,5 +39,8 @@ export default {
   InputLen,
   TextareaLen,
   Version,
+  Mixcheck,
+  RadioItem,
+  CheckItem,
   ICheckbox
 }

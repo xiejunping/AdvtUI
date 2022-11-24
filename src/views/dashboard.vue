@@ -11,6 +11,7 @@
         <router-link to="/textarea-len">Textarea-Len</router-link><br>
         <router-link to="/version">Version</router-link><br>
         <router-link to="/drop-tree">Drop-Tree</router-link><br>
+        <router-link to="/mixcheck">Mixcheck</router-link><br>
       </a-col>
       <a-col :span="8">
         <div><span> 布局 </span></div>

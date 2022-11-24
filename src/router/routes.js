@@ -35,6 +35,11 @@ export default [
     component: () => import(/* webpackChunkName: "version" */ '../views/version.vue')
   },
   {
+    path: '/mixcheck',
+    name: 'mixcheck',
+    component: () => import(/* webpackChunkName: "mixcheck" */ '../views/mixcheck.vue')
+  },
+  {
     path: '*',
     name: 'nofound',
     component: () => import('../components/NoFound.vue')
