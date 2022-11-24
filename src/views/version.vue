@@ -2,8 +2,8 @@
   <div class="page">
     <h2>Version 平台版本选择器</h2>
 
-    <version :data="iOSVersion" title="iOS版本" />
-    <span>{{ios_osv}}</span>
+    <version v-model="ios_osv1" :data="iOSVersion" title="iOS版本" />
+    <span>{{ios_osv1}}</span>
     <br>
     <version v-model="ios_osv" :data="iOSVersion" title="iOS版本" />
     <span>{{ios_osv}}</span>
@@ -19,6 +19,7 @@ const androidVersion = ['0.0', '11.0', '10.1', '10.0', '9.0', '8.1', '8.0', '7.1
 export default {
   data () {
     return {
+      ios_osv1: null,
       ios_osv: '9.3',
       android_osv: '0.0',
       iOSVersion,

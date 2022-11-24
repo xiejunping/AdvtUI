@@ -39,9 +39,25 @@
   </div>
 </template>
 <script>
-import { getKeyOfData, findCheck, clearTagOfData } from '../utils/assets'
+import { getKeyOfData, findCheck } from '../utils/assets'
+import { isArray } from '../utils/api'
 import SelectItem from './select-item.vue'
 import SelectBox from './select-box.vue'
+
+// 清空选中
+function clearTagOfData (list, Vue) {
+  if (!isArray(list)) throw new Error('clearTagOfData args list invalid!')
+  let i = -1
+  const len = list.length
+  while (++i < len) {
+    const item = list[i]
+    const itemChild = item.children || item.child
+    if (itemChild && itemChild.length) {
+      clearTagOfData(itemChild, Vue)
+    }
+    Vue.$set(item, 'check', false)
+  }
+}
 export default {
   name: 'selecter',
   components: { SelectItem, SelectBox },
@@ -78,12 +94,6 @@ export default {
       return Boolean(this.result.length)
     }
   },
-  watch: {
-    data (nVal) {
-      if (nVal && nVal.length) this.updateResource()
-      else this.resource = []
-    }
-  },
   methods: {
     updateResource () {
       this.resource = []
@@ -98,7 +108,7 @@ export default {
     handleClose (id) {
       const data = getKeyOfData(this.data, 'id', id)
       if (data.children && data.children.length) {
-        this.selectFinalAll({ list: this.data, check: false, id: data.value })
+        this.selectFinalAll({ list: this.data, check: false, current: id })
       } else {
         this.$set(data, 'check', false)
       }
@@ -128,11 +138,11 @@ export default {
       this.resource[level - 1].current = item.id
     },
     // 全选
-    selectFinalAll ({ list, check = true, current = '' }) {
+    selectFinalAll ({ list, check = true, current = 0 }) {
       let data
       // 无限递归
-      const setAllChecked = (data, check) => {
-        data.forEach(ret => {
+      const setAllChecked = (all, check) => {
+        all.forEach(ret => {
           if (ret.children && ret.children.length) setAllChecked(ret.children, check)
           this.$set(ret, 'check', check)
         })
@@ -146,9 +156,25 @@ export default {
     // 清空全部
     clearTag ({ list }) {
       clearTagOfData(list, this)
+    },
+    // 默认选中
+    decompile(Ids) {
+      const deepSelect = item => {
+        item.forEach(ret => {
+          if (ret && ret.children && ret.children.length) deepSelect(ret.children)
+          !ret.disabled && this.$set(ret, 'check', true)
+        })
+      }
+      Ids.forEach(ret => {
+        const item = getKeyOfData(this.data, 'id', ret)
+        deepSelect([item])
+      })
     }
   },
   created () {
+    if (isArray(this.value) && this.value.length) {
+      this.decompile(this.value)
+    }
     this.updateResource()
   }
 }

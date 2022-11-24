@@ -1,7 +1,7 @@
 import { isArray } from './api'
 
 export function getKeyOfData (list, key, value) {
-  if (!isArray(list)) throw new Error('clearTagOfData params list invalid !')
+  if (!isArray(list)) throw new Error('getKeyOfData args list invalid!')
   let i = -1
   const len = list.length
   let homeItem = {}
@@ -30,20 +30,4 @@ export function findCheck (list, arr = []) {
     }
   })
   return arr
-}
-
-// 清空选中
-export function clearTagOfData (list, Vue) {
-  if (!isArray(list)) throw new Error('clearTagOfData params list invalid !')
-  let i = -1
-  const len = list.length
-  while (++i < len) {
-    const item = list[i]
-    if (item.children && item.children.length) {
-      clearTagOfData(item.children, Vue)
-    } else if (item.child && item.child.length) {
-      clearTagOfData(item.child, Vue)
-    }
-    Vue.$set(item, 'check', false)
-  }
 }
