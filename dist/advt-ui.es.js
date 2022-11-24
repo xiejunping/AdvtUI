@@ -1,3 +1,4 @@
+let timer = null;
 function formatDate(date, fmt) {
   let o2 = {
     "M+": date.getMonth() + 1,
@@ -18,7 +19,15 @@ function formatDate(date, fmt) {
   }
   return fmt;
 }
-var render$8 = function() {
+function debounce$1(event, time) {
+  return function(...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      event.apply(this, args);
+    }, time);
+  };
+}
+var render$b = function() {
   var _vm = this;
   var _h = _vm.$createElement;
   var _c = _vm._self._c || _h;
@@ -112,8 +121,8 @@ var render$8 = function() {
     }, [_vm._v(_vm._s(t3.week) + "\uFF1A")]), _c("span", [_vm._v(_vm._s(t3.value))])]) : _vm._e()]);
   }), 0)]) : _vm._e()])]);
 };
-var staticRenderFns$8 = [];
-var index_vue_vue_type_style_index_0_scoped_true_lang$2 = "";
+var staticRenderFns$b = [];
+var index_vue_vue_type_style_index_0_scoped_true_lang$5 = "";
 function normalizeComponent(scriptExports, render2, staticRenderFns2, functionalTemplate, injectStyles, scopeId, moduleIdentifier, shadowMode) {
   var options = typeof scriptExports === "function" ? scriptExports.options : scriptExports;
   if (render2) {
@@ -203,7 +212,7 @@ function splicing(list) {
   arr.shift();
   return arr.join("");
 }
-const __vue2_script$8 = {
+const __vue2_script$b = {
   name: "DragWeektime",
   props: {
     value: {
@@ -354,24 +363,24 @@ const __vue2_script$8 = {
     };
   }
 };
-const __cssModules$8 = {};
-var __component__$8 = /* @__PURE__ */ normalizeComponent(
-  __vue2_script$8,
-  render$8,
-  staticRenderFns$8,
+const __cssModules$b = {};
+var __component__$b = /* @__PURE__ */ normalizeComponent(
+  __vue2_script$b,
+  render$b,
+  staticRenderFns$b,
   false,
-  __vue2_injectStyles$8,
+  __vue2_injectStyles$b,
   "502d0d99",
   null,
   null
 );
-function __vue2_injectStyles$8(context) {
-  for (let o2 in __cssModules$8) {
-    this[o2] = __cssModules$8[o2];
+function __vue2_injectStyles$b(context) {
+  for (let o2 in __cssModules$b) {
+    this[o2] = __cssModules$b[o2];
   }
 }
 var DragWeektime = /* @__PURE__ */ function() {
-  return __component__$8.exports;
+  return __component__$b.exports;
 }();
 var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
 function getDefaultExportFromCjs(x2) {
@@ -7199,7 +7208,39 @@ function getByteLen(val, num) {
   }
   return len;
 }
-var render$7 = function() {
+function findComponentUpward(context, componentName, componentNames) {
+  if (typeof componentName === "string") {
+    componentNames = [componentName];
+  } else {
+    componentNames = componentName;
+  }
+  let parent = context.$parent;
+  let name = parent.$options.name;
+  while (parent && (!name || componentNames.indexOf(name) < 0)) {
+    parent = parent.$parent;
+    if (parent)
+      name = parent.$options.name;
+  }
+  return parent;
+}
+function findComponentsDownward(context, componentName) {
+  return context.$children.reduce((components2, child) => {
+    if (child.$options.name === componentName)
+      components2.push(child);
+    const foundChilds = findComponentsDownward(child, componentName);
+    return components2.concat(foundChilds);
+  }, []);
+}
+function findBrothersComponents(context, componentName, exceptMe = true) {
+  let res = context.$parent.$children.filter((item) => {
+    return item.$options.name === componentName;
+  });
+  let index2 = res.findIndex((item) => item._uid === context._uid);
+  if (exceptMe)
+    res.splice(index2, 1);
+  return res;
+}
+var render$a = function() {
   var _vm = this;
   var _h = _vm.$createElement;
   var _c = _vm._self._c || _h;
@@ -7220,9 +7261,9 @@ var render$7 = function() {
     staticClass: "c-selecter-content"
   }, [_vm._t("default")], 2)]);
 };
-var staticRenderFns$7 = [];
+var staticRenderFns$a = [];
 var selectItem_vue_vue_type_style_index_0_scoped_true_lang = "";
-const __vue2_script$7 = {
+const __vue2_script$a = {
   name: "selectItem",
   props: {
     title: {
@@ -7233,26 +7274,26 @@ const __vue2_script$7 = {
     }
   }
 };
-const __cssModules$7 = {};
-var __component__$7 = /* @__PURE__ */ normalizeComponent(
-  __vue2_script$7,
-  render$7,
-  staticRenderFns$7,
+const __cssModules$a = {};
+var __component__$a = /* @__PURE__ */ normalizeComponent(
+  __vue2_script$a,
+  render$a,
+  staticRenderFns$a,
   false,
-  __vue2_injectStyles$7,
+  __vue2_injectStyles$a,
   "3d2f2883",
   null,
   null
 );
-function __vue2_injectStyles$7(context) {
-  for (let o2 in __cssModules$7) {
-    this[o2] = __cssModules$7[o2];
+function __vue2_injectStyles$a(context) {
+  for (let o2 in __cssModules$a) {
+    this[o2] = __cssModules$a[o2];
   }
 }
 var SelectItem = /* @__PURE__ */ function() {
-  return __component__$7.exports;
+  return __component__$a.exports;
 }();
-var render$6 = function() {
+var render$9 = function() {
   var _vm = this;
   var _h = _vm.$createElement;
   var _c = _vm._self._c || _h;
@@ -7266,8 +7307,8 @@ var render$6 = function() {
     }
   }, [_vm._v(_vm._s(_vm.label))]);
 };
-var staticRenderFns$6 = [];
-const __vue2_script$6 = {
+var staticRenderFns$9 = [];
+const __vue2_script$9 = {
   name: "ICheckbox",
   props: {
     value: {
@@ -7286,26 +7327,26 @@ const __vue2_script$6 = {
     }
   }
 };
-const __cssModules$6 = {};
-var __component__$6 = /* @__PURE__ */ normalizeComponent(
-  __vue2_script$6,
-  render$6,
-  staticRenderFns$6,
+const __cssModules$9 = {};
+var __component__$9 = /* @__PURE__ */ normalizeComponent(
+  __vue2_script$9,
+  render$9,
+  staticRenderFns$9,
   false,
-  __vue2_injectStyles$6,
+  __vue2_injectStyles$9,
   null,
   null,
   null
 );
-function __vue2_injectStyles$6(context) {
-  for (let o2 in __cssModules$6) {
-    this[o2] = __cssModules$6[o2];
+function __vue2_injectStyles$9(context) {
+  for (let o2 in __cssModules$9) {
+    this[o2] = __cssModules$9[o2];
   }
 }
 var ICheckbox = /* @__PURE__ */ function() {
-  return __component__$6.exports;
+  return __component__$9.exports;
 }();
-var render$5 = function() {
+var render$8 = function() {
   var _vm = this;
   var _h = _vm.$createElement;
   var _c = _vm._self._c || _h;
@@ -7379,7 +7420,7 @@ var render$5 = function() {
     })], 1);
   })], 2);
 };
-var staticRenderFns$5 = [];
+var staticRenderFns$8 = [];
 var selectBox_vue_vue_type_style_index_0_scoped_true_lang = "";
 const computeChild = (list, Vue) => {
   list.forEach((item) => {
@@ -7393,7 +7434,7 @@ const computeChild = (list, Vue) => {
     }
   });
 };
-const __vue2_script$5 = {
+const __vue2_script$8 = {
   name: "selectBox",
   components: { ICheckbox },
   props: {
@@ -7462,26 +7503,26 @@ const __vue2_script$5 = {
     computeChild(this.data, this);
   }
 };
-const __cssModules$5 = {};
-var __component__$5 = /* @__PURE__ */ normalizeComponent(
-  __vue2_script$5,
-  render$5,
-  staticRenderFns$5,
+const __cssModules$8 = {};
+var __component__$8 = /* @__PURE__ */ normalizeComponent(
+  __vue2_script$8,
+  render$8,
+  staticRenderFns$8,
   false,
-  __vue2_injectStyles$5,
+  __vue2_injectStyles$8,
   "6fdc22c7",
   null,
   null
 );
-function __vue2_injectStyles$5(context) {
-  for (let o2 in __cssModules$5) {
-    this[o2] = __cssModules$5[o2];
+function __vue2_injectStyles$8(context) {
+  for (let o2 in __cssModules$8) {
+    this[o2] = __cssModules$8[o2];
   }
 }
 var SelectBox = /* @__PURE__ */ function() {
-  return __component__$5.exports;
+  return __component__$8.exports;
 }();
-var render$4 = function() {
+var render$7 = function() {
   var _vm = this;
   var _h = _vm.$createElement;
   var _c = _vm._self._c || _h;
@@ -7556,7 +7597,7 @@ var render$4 = function() {
     }, [_vm._v(_vm._s(item.value))])], 1);
   }), 0) : _vm._e()], 1)], 1)], 1);
 };
-var staticRenderFns$4 = [];
+var staticRenderFns$7 = [];
 var select_vue_vue_type_style_index_0_scoped_true_lang = "";
 function clearTagOfData(list, Vue) {
   if (!isArray(list))
@@ -7572,7 +7613,7 @@ function clearTagOfData(list, Vue) {
     Vue.$set(item, "check", false);
   }
 }
-const __vue2_script$4 = {
+const __vue2_script$7 = {
   name: "selecter",
   components: { SelectItem, SelectBox },
   props: {
@@ -7690,26 +7731,26 @@ const __vue2_script$4 = {
     this.updateResource();
   }
 };
-const __cssModules$4 = {};
-var __component__$4 = /* @__PURE__ */ normalizeComponent(
-  __vue2_script$4,
-  render$4,
-  staticRenderFns$4,
+const __cssModules$7 = {};
+var __component__$7 = /* @__PURE__ */ normalizeComponent(
+  __vue2_script$7,
+  render$7,
+  staticRenderFns$7,
   false,
-  __vue2_injectStyles$4,
+  __vue2_injectStyles$7,
   "1753433f",
   null,
   null
 );
-function __vue2_injectStyles$4(context) {
-  for (let o2 in __cssModules$4) {
-    this[o2] = __cssModules$4[o2];
+function __vue2_injectStyles$7(context) {
+  for (let o2 in __cssModules$7) {
+    this[o2] = __cssModules$7[o2];
   }
 }
 var Selecter = /* @__PURE__ */ function() {
-  return __component__$4.exports;
+  return __component__$7.exports;
 }();
-var render$3 = function() {
+var render$6 = function() {
   var _vm = this;
   var _h = _vm.$createElement;
   var _c = _vm._self._c || _h;
@@ -7735,9 +7776,9 @@ var render$3 = function() {
     }, [_vm._v(_vm._s(r2.label))]);
   }), 1)], 1);
 };
-var staticRenderFns$3 = [];
-var index_vue_vue_type_style_index_0_scoped_true_lang$1 = "";
-const __vue2_script$3 = {
+var staticRenderFns$6 = [];
+var index_vue_vue_type_style_index_0_scoped_true_lang$4 = "";
+const __vue2_script$6 = {
   name: "Version",
   components: { SelectItem },
   props: {
@@ -7784,26 +7825,26 @@ const __vue2_script$3 = {
     }
   }
 };
-const __cssModules$3 = {};
-var __component__$3 = /* @__PURE__ */ normalizeComponent(
-  __vue2_script$3,
-  render$3,
-  staticRenderFns$3,
+const __cssModules$6 = {};
+var __component__$6 = /* @__PURE__ */ normalizeComponent(
+  __vue2_script$6,
+  render$6,
+  staticRenderFns$6,
   false,
-  __vue2_injectStyles$3,
+  __vue2_injectStyles$6,
   "9efd1348",
   null,
   null
 );
-function __vue2_injectStyles$3(context) {
-  for (let o2 in __cssModules$3) {
-    this[o2] = __cssModules$3[o2];
+function __vue2_injectStyles$6(context) {
+  for (let o2 in __cssModules$6) {
+    this[o2] = __cssModules$6[o2];
   }
 }
 var Version = /* @__PURE__ */ function() {
-  return __component__$3.exports;
+  return __component__$6.exports;
 }();
-var render$2 = function() {
+var render$5 = function() {
   var _vm = this;
   var _h = _vm.$createElement;
   var _c = _vm._self._c || _h;
@@ -7846,9 +7887,9 @@ var render$2 = function() {
     }), 0)])], 2);
   }), 1);
 };
-var staticRenderFns$2 = [];
-var index_vue_vue_type_style_index_0_scoped_true_lang = "";
-const __vue2_script$2 = {
+var staticRenderFns$5 = [];
+var index_vue_vue_type_style_index_0_scoped_true_lang$3 = "";
+const __vue2_script$5 = {
   name: "Steper",
   props: {
     current: {
@@ -7866,26 +7907,26 @@ const __vue2_script$2 = {
     }
   }
 };
-const __cssModules$2 = {};
-var __component__$2 = /* @__PURE__ */ normalizeComponent(
-  __vue2_script$2,
-  render$2,
-  staticRenderFns$2,
+const __cssModules$5 = {};
+var __component__$5 = /* @__PURE__ */ normalizeComponent(
+  __vue2_script$5,
+  render$5,
+  staticRenderFns$5,
   false,
-  __vue2_injectStyles$2,
+  __vue2_injectStyles$5,
   "5dd9f6d0",
   null,
   null
 );
-function __vue2_injectStyles$2(context) {
-  for (let o2 in __cssModules$2) {
-    this[o2] = __cssModules$2[o2];
+function __vue2_injectStyles$5(context) {
+  for (let o2 in __cssModules$5) {
+    this[o2] = __cssModules$5[o2];
   }
 }
 var Steper = /* @__PURE__ */ function() {
-  return __component__$2.exports;
+  return __component__$5.exports;
 }();
-var render$1 = function() {
+var render$4 = function() {
   var _vm = this;
   var _h = _vm.$createElement;
   var _c = _vm._self._c || _h;
@@ -7920,9 +7961,9 @@ var render$1 = function() {
     class: _vm.warnClass
   }, [_vm._v(" " + _vm._s(_vm.len) + " ")]), _vm._v("/" + _vm._s(_vm.max) + " ")])], 1);
 };
-var staticRenderFns$1 = [];
+var staticRenderFns$4 = [];
 var input_vue_vue_type_style_index_0_scoped_true_lang = "";
-const __vue2_script$1 = {
+const __vue2_script$4 = {
   name: "InputLen",
   props: {
     value: {
@@ -7989,26 +8030,26 @@ const __vue2_script$1 = {
     }
   }
 };
-const __cssModules$1 = {};
-var __component__$1 = /* @__PURE__ */ normalizeComponent(
-  __vue2_script$1,
-  render$1,
-  staticRenderFns$1,
+const __cssModules$4 = {};
+var __component__$4 = /* @__PURE__ */ normalizeComponent(
+  __vue2_script$4,
+  render$4,
+  staticRenderFns$4,
   false,
-  __vue2_injectStyles$1,
+  __vue2_injectStyles$4,
   "9e85231c",
   null,
   null
 );
-function __vue2_injectStyles$1(context) {
-  for (let o2 in __cssModules$1) {
-    this[o2] = __cssModules$1[o2];
+function __vue2_injectStyles$4(context) {
+  for (let o2 in __cssModules$4) {
+    this[o2] = __cssModules$4[o2];
   }
 }
 var InputLen = /* @__PURE__ */ function() {
-  return __component__$1.exports;
+  return __component__$4.exports;
 }();
-var render = function() {
+var render$3 = function() {
   var _vm = this;
   var _h = _vm.$createElement;
   var _c = _vm._self._c || _h;
@@ -8042,9 +8083,9 @@ var render = function() {
     class: _vm.warnClass
   }, [_vm._v(" " + _vm._s(_vm.len) + " ")]), _vm._v("/" + _vm._s(_vm.max) + " ")])], 1);
 };
-var staticRenderFns = [];
+var staticRenderFns$3 = [];
 var textarea_vue_vue_type_style_index_0_scoped_true_lang = "";
-const __vue2_script = {
+const __vue2_script$3 = {
   name: "TextareaLen",
   props: {
     value: {
@@ -8109,6 +8150,297 @@ const __vue2_script = {
     }
   }
 };
+const __cssModules$3 = {};
+var __component__$3 = /* @__PURE__ */ normalizeComponent(
+  __vue2_script$3,
+  render$3,
+  staticRenderFns$3,
+  false,
+  __vue2_injectStyles$3,
+  "78ab5732",
+  null,
+  null
+);
+function __vue2_injectStyles$3(context) {
+  for (let o2 in __cssModules$3) {
+    this[o2] = __cssModules$3[o2];
+  }
+}
+var TextareaLen = /* @__PURE__ */ function() {
+  return __component__$3.exports;
+}();
+var render$2 = function() {
+  var _vm = this;
+  var _h = _vm.$createElement;
+  var _c = _vm._self._c || _h;
+  return _c("div", {
+    staticClass: "c-mixcheck"
+  }, [_vm._t("default")], 2);
+};
+var staticRenderFns$2 = [];
+var index_vue_vue_type_style_index_0_scoped_true_lang$2 = "";
+const __vue2_script$2 = {
+  name: "Mixcheck",
+  props: {
+    value: {
+      type: [Array, String, Number],
+      required: true
+    }
+  },
+  methods: {
+    updateModel() {
+      this.radioChildrens = findComponentsDownward(this, "RadioItem");
+      this.checkChildrens = findComponentsDownward(this, "CheckItem");
+      if (this.radioChildrens || this.checkChildrens) {
+        const { value } = this;
+        const childrens = this.$children;
+        for (const child of childrens) {
+          child.model = value;
+          child.currentValue = false;
+        }
+        if (isArray(value)) {
+          this.checkChildrens.forEach((child) => {
+            child.currentValue = value.indexOf(child.label) >= 0;
+          });
+        } else {
+          const index2 = this.radioChildrens.findIndex((ret) => ret.label === value);
+          if (index2 > -1)
+            this.radioChildrens[index2].currentValue = true;
+        }
+      }
+    },
+    change(data) {
+      this.currentValue = data;
+      this.$emit("input", data);
+      this.$emit("change", data);
+    }
+  },
+  watch: {
+    value(nVal) {
+      debounce$1(this.updateModel(), 1e3);
+    }
+  },
+  data() {
+    return {
+      currentValue: this.value,
+      radioChildrens: [],
+      checkChildrens: []
+    };
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.updateModel();
+    });
+  }
+};
+const __cssModules$2 = {};
+var __component__$2 = /* @__PURE__ */ normalizeComponent(
+  __vue2_script$2,
+  render$2,
+  staticRenderFns$2,
+  false,
+  __vue2_injectStyles$2,
+  "06d97b01",
+  null,
+  null
+);
+function __vue2_injectStyles$2(context) {
+  for (let o2 in __cssModules$2) {
+    this[o2] = __cssModules$2[o2];
+  }
+}
+var Mixcheck = /* @__PURE__ */ function() {
+  return __component__$2.exports;
+}();
+var render$1 = function() {
+  var _vm = this;
+  var _h = _vm.$createElement;
+  var _c = _vm._self._c || _h;
+  return _c("label", {
+    class: _vm.wrapClasses
+  }, [_c("span", {
+    staticClass: "c-radio-item"
+  }, [_c("input", {
+    class: _vm.inputClasses,
+    attrs: {
+      "type": "radio",
+      "disabled": _vm.disabled,
+      "name": _vm.name
+    },
+    domProps: {
+      "checked": _vm.currentValue
+    },
+    on: {
+      "change": _vm.change
+    }
+  }), _vm._t("default", function() {
+    return [_vm.showSlot ? _c("span", [_vm._v(" " + _vm._s(_vm.label) + " ")]) : _vm._e()];
+  })], 2)]);
+};
+var staticRenderFns$1 = [];
+var index_vue_vue_type_style_index_0_scoped_true_lang$1 = "";
+const __vue2_script$1 = {
+  name: "RadioItem",
+  props: {
+    label: {
+      type: [String, Number, Boolean]
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    name: {
+      type: String
+    }
+  },
+  computed: {
+    wrapClasses() {
+      return [
+        "mixcheck-item",
+        "c-radio-wrapper",
+        {
+          "c-wrapper-checked": this.currentValue,
+          "c-wrapper-disabled": this.disabled
+        }
+      ];
+    },
+    inputClasses() {
+      return "c-mix-input";
+    }
+  },
+  methods: {
+    change(event) {
+      if (this.disabled)
+        return false;
+      const checked = event.target.checked;
+      this.currentValue = checked;
+      if (checked)
+        this.parent.change(this.label);
+      else
+        this.parent.change("");
+    }
+  },
+  data() {
+    return {
+      model: null,
+      showSlot: true,
+      currentValue: false,
+      parent: findComponentUpward(this, "Mixcheck")
+    };
+  },
+  mounted() {
+    this.showSlot = this.$slots.default === void 0;
+    this.parent.updateModel(true);
+  }
+};
+const __cssModules$1 = {};
+var __component__$1 = /* @__PURE__ */ normalizeComponent(
+  __vue2_script$1,
+  render$1,
+  staticRenderFns$1,
+  false,
+  __vue2_injectStyles$1,
+  "cd52d98e",
+  null,
+  null
+);
+function __vue2_injectStyles$1(context) {
+  for (let o2 in __cssModules$1) {
+    this[o2] = __cssModules$1[o2];
+  }
+}
+var RadioItem = /* @__PURE__ */ function() {
+  return __component__$1.exports;
+}();
+var render = function() {
+  var _vm = this;
+  var _h = _vm.$createElement;
+  var _c = _vm._self._c || _h;
+  return _c("label", {
+    class: _vm.wrapClasses
+  }, [_c("span", {
+    staticClass: "c-check-item"
+  }, [_c("input", {
+    class: _vm.inputClasses,
+    attrs: {
+      "type": "checkbox",
+      "disabled": _vm.disabled,
+      "name": _vm.name
+    },
+    domProps: {
+      "checked": _vm.currentValue
+    },
+    on: {
+      "change": _vm.change
+    }
+  })]), _vm._t("default", function() {
+    return [_vm.showSlot ? _c("span", [_vm._v(" " + _vm._s(_vm.label) + " ")]) : _vm._e()];
+  })], 2);
+};
+var staticRenderFns = [];
+var index_vue_vue_type_style_index_0_scoped_true_lang = "";
+const __vue2_script = {
+  name: "CheckItem",
+  props: {
+    label: {
+      type: [String, Number, Boolean]
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    name: {
+      type: String
+    }
+  },
+  computed: {
+    wrapClasses() {
+      return [
+        "mixcheck-item",
+        "c-check-wrapper",
+        {
+          "c-wrapper-checked": this.currentValue,
+          "c-wrapper-disabled": this.disabled
+        }
+      ];
+    },
+    inputClasses() {
+      return "c-mix-input";
+    }
+  },
+  methods: {
+    change(event) {
+      if (this.disabled)
+        return false;
+      const checked = event.target.checked;
+      const brothers = findBrothersComponents(this, "CheckItem", false);
+      if (brothers.length) {
+        const model = [];
+        const allCheck = checked || brothers.filter((ret) => ret.currentValue).length > 1;
+        allCheck && (this.currentValue = checked);
+        for (const child of brothers) {
+          if (child.currentValue)
+            model.push(child.label);
+        }
+        console.log(model, checked);
+        this.parent.change(model);
+      } else
+        this.parent.change([]);
+    }
+  },
+  data() {
+    return {
+      model: null,
+      showSlot: true,
+      currentValue: false,
+      parent: findComponentUpward(this, "Mixcheck")
+    };
+  },
+  mounted() {
+    this.showSlot = this.$slots.default === void 0;
+    this.parent.updateModel(true);
+  }
+};
 const __cssModules = {};
 var __component__ = /* @__PURE__ */ normalizeComponent(
   __vue2_script,
@@ -8116,7 +8448,7 @@ var __component__ = /* @__PURE__ */ normalizeComponent(
   staticRenderFns,
   false,
   __vue2_injectStyles,
-  "78ab5732",
+  "72ecd3a7",
   null,
   null
 );
@@ -8125,7 +8457,7 @@ function __vue2_injectStyles(context) {
     this[o2] = __cssModules[o2];
   }
 }
-var TextareaLen = /* @__PURE__ */ function() {
+var CheckItem = /* @__PURE__ */ function() {
   return __component__.exports;
 }();
 const components = [
@@ -8136,6 +8468,9 @@ const components = [
   InputLen,
   TextareaLen,
   Version,
+  Mixcheck,
+  RadioItem,
+  CheckItem,
   ICheckbox
 ];
 const install = (Vue) => {
@@ -8152,6 +8487,9 @@ var index = {
   InputLen,
   TextareaLen,
   Version,
+  Mixcheck,
+  RadioItem,
+  CheckItem,
   ICheckbox
 };
 export { index as default };
