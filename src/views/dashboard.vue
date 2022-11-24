@@ -7,6 +7,8 @@
         <div><span> 基础 </span></div>
         <router-link to="/drag-weektime">Drag-Weektime</router-link><br>
         <router-link to="/selecter">Selecter</router-link><br>
+        <router-link to="/input-len">Input-Len</router-link><br>
+        <router-link to="/textarea-len">Textarea-Len</router-link><br>
         <router-link to="/version">Version</router-link><br>
         <router-link to="/drop-tree">Drop-Tree</router-link><br>
       </a-col>

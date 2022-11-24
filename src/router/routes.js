@@ -5,6 +5,16 @@ export default [
     component: () => import(/* webpackChunkName: "dashboard" */ '../views/dashboard.vue')
   },
   {
+    path: '/input-len',
+    name: 'inputLen',
+    component: () => import(/* webpackChunkName: "inputLen" */ '../views/input-len.vue')
+  },
+  {
+    path: '/textarea-len',
+    name: 'textareaLen',
+    component: () => import(/* webpackChunkName: "textareaLen" */ '../views/textarea-len.vue')
+  },
+  {
     path: '/drag-weektime',
     name: 'dragWeektime',
     component: () => import(/* webpackChunkName: "dragWeektime" */ '../views/drag-weektime.vue')

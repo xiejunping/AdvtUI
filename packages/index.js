@@ -3,6 +3,8 @@ import DropTree from './droptree/index'
 import Selecter from './selecter/select.vue'
 import Version from './version/index.vue'
 import Steper from './steper/index.vue'
+import InputLen from './len/input.vue'
+import TextareaLen from './len/textarea.vue'
 import ICheckbox from './i-checkbox.vue'
 
 const components = [
@@ -10,6 +12,8 @@ const components = [
   DropTree,
   Selecter,
   Steper,
+  InputLen,
+  TextareaLen,
   Version,
   ICheckbox
 ]
@@ -26,6 +30,8 @@ export default {
   DropTree,
   Selecter,
   Steper,
+  InputLen,
+  TextareaLen,
   Version,
   ICheckbox
 }

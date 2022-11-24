@@ -31,3 +31,18 @@ export function findCheck (list, arr = []) {
   })
   return arr
 }
+
+export function getByteLen (val, num) {
+  let len = 0
+  let charLen = num || 2
+  for (let i = 0; i < val.length; i++) {
+    let a = val.charAt(i)
+    /* eslint-disable-next-line */
+    if (a.match(/[^\x00-\xff]/ig) !== null) {
+      len += charLen
+    } else {
+      len += 1
+    }
+  }
+  return len
+}
