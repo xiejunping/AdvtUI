@@ -3,6 +3,7 @@ import DropTree from './droptree/index'
 import Selecter from './selecter/select.vue'
 import Version from './version/index.vue'
 import Steper from './steper/index.vue'
+import Moduler from './moduler/index.vue'
 import InputLen from './len/input.vue'
 import TextareaLen from './len/textarea.vue'
 import Mixcheck from './mixcheck/index'
@@ -17,6 +18,7 @@ const components = [
   DropTree,
   Selecter,
   Steper,
+  Moduler,
   InputLen,
   TextareaLen,
   Version,
@@ -40,6 +42,7 @@ export default {
   DropTree,
   Selecter,
   Steper,
+  Moduler,
   InputLen,
   TextareaLen,
   Version,

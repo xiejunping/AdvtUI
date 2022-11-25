@@ -35,6 +35,16 @@ export default [
     component: () => import(/* webpackChunkName: "version" */ '../views/version.vue')
   },
   {
+    path: '/steper',
+    name: 'steper',
+    component: () => import(/* webpackChunkName: "steper" */ '../views/steper.vue')
+  },
+  {
+    path: '/moduler',
+    name: 'moduler',
+    component: () => import(/* webpackChunkName: "moduler" */ '../views/moduler.vue')
+  },
+  {
     path: '/mixcheck',
     name: 'mixcheck',
     component: () => import(/* webpackChunkName: "mixcheck" */ '../views/mixcheck.vue')

@@ -15,8 +15,8 @@
       </a-col>
       <a-col :span="8">
         <div><span> 布局 </span></div>
-        <router-link to="/moduler">Moduler</router-link><br>
         <router-link to="/steper">Steper</router-link><br>
+        <router-link to="/moduler">Moduler</router-link><br>
         <router-link to="/row-form">Row-Form</router-link><br>
         <router-link to="/drag-weektime">Drag-Weektime</router-link><br>
       </a-col>
