@@ -40,6 +40,11 @@ export default [
     component: () => import(/* webpackChunkName: "mixcheck" */ '../views/mixcheck.vue')
   },
   {
+    path: '/row-form',
+    name: 'rowform',
+    component: () => import(/* webpackChunkName: "rowform" */ '../views/row-form.vue')
+  },
+  {
     path: '*',
     name: 'nofound',
     component: () => import('../components/NoFound.vue')

@@ -5,11 +5,13 @@ import Version from './version/index.vue'
 import Steper from './steper/index.vue'
 import InputLen from './len/input.vue'
 import TextareaLen from './len/textarea.vue'
-import Mixcheck from './mixcheck/index.vue'
-import RadioItem from './mixcheck/radio-item/index.vue'
-import CheckItem from './mixcheck/check-item/index.vue'
+import Mixcheck from './mixcheck/index'
+import RowForm from './form/index'
 import ICheckbox from './i-checkbox.vue'
 
+const RadioItem = Mixcheck.Radio
+const CheckItem = Mixcheck.Check
+const RowItem = RowForm.Item
 const components = [
   DragWeektime,
   DropTree,
@@ -21,6 +23,8 @@ const components = [
   Mixcheck,
   RadioItem,
   CheckItem,
+  RowForm,
+  RowItem,
   ICheckbox
 ]
 
@@ -40,7 +44,6 @@ export default {
   TextareaLen,
   Version,
   Mixcheck,
-  RadioItem,
-  CheckItem,
+  RowForm,
   ICheckbox
 }

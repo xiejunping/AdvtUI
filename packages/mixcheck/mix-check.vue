@@ -5,7 +5,7 @@
 </template>
 <script>
 import { isArray } from '../utils/api'
-import { debounce } from '../utils/'
+import { debounce } from '../utils'
 import { findComponentsDownward } from '../utils/assets'
 export default {
   name: 'Mixcheck',
