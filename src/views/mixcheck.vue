@@ -15,9 +15,10 @@
     <div>
       <mixcheck v-model="carrier1">
         <radio-item label="NONE">不限</radio-item>
-        <radio-item label="MOBILE">移动</radio-item>
-        <radio-item label="UNICOM">联通</radio-item>
-        <radio-item label="TELCOM">电信</radio-item>
+        <radio-item label="PRICING_OCPM">转化量</radio-item>
+        <radio-item label="PRICING_CPC">点击量</radio-item>
+        <radio-item label="PRICING_CPM">展示量</radio-item>
+        <radio-item label="PRICING_CPV">有效播放量</radio-item>
       </mixcheck>
     </div>
     {{carrier1}}
@@ -38,7 +39,7 @@ export default {
   data() {
     return {
       carrier: 'NONE',
-      carrier1: 'MOBILE',
+      carrier1: 'PRICING_OCPM',
       carrier2: ['MOBILE', 'TELCOM']
     }
   }
