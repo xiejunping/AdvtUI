@@ -16,7 +16,7 @@ router.beforeEach((to, from, next) => {
 })
 
 router.afterEach((to) => {
-
+  console.log(isProd)
 })
 
 export default router
