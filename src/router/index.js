@@ -16,11 +16,7 @@ router.beforeEach((to, from, next) => {
 })
 
 router.afterEach((to) => {
-  if (isProd) {
-    // 百度统计上报
-    window._hmt.push(['_setAutoPageview', false])
-    window._hmt.push(['_trackPageview', to.fullPath])
-  }
+
 })
 
 export default router
