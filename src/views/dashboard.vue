@@ -18,6 +18,7 @@
         <router-link to="/steper">Steper</router-link><br>
         <router-link to="/moduler">Moduler</router-link><br>
         <router-link to="/row-form">Row-Form</router-link><br>
+        <router-link to="/error-pop">Error-Pop</router-link>
         <router-link to="/drag-weektime">Drag-Weektime</router-link><br>
       </a-col>
       <a-col :span="8"></a-col>

@@ -55,6 +55,11 @@ export default [
     component: () => import(/* webpackChunkName: "rowform" */ '../views/row-form.vue')
   },
   {
+    path: '/error-pop',
+    name: 'errorpop',
+    component: () => import(/* webpackChunkName: "errorpop" */ '../views/error-pop.vue')
+  },
+  {
     path: '*',
     name: 'nofound',
     component: () => import('../components/NoFound.vue')
