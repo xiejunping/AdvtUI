@@ -8,6 +8,7 @@ import InputLen from './len/input.vue'
 import TextareaLen from './len/textarea.vue'
 import Mixcheck from './mixcheck/index'
 import RowForm from './form/index'
+import ErrorPop from './error-pop/index.vue'
 import ICheckbox from './i-checkbox.vue'
 
 const RadioItem = Mixcheck.Radio
@@ -27,6 +28,7 @@ const components = [
   CheckItem,
   RowForm,
   RowItem,
+  ErrorPop,
   ICheckbox
 ]
 
@@ -48,5 +50,6 @@ export default {
   Version,
   Mixcheck,
   RowForm,
+  ErrorPop,
   ICheckbox
 }
