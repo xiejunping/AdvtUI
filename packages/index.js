@@ -39,7 +39,10 @@ const install = Vue => {
 }
 
 export default {
-  install,
+  install
+}
+
+export {
   DragWeektime,
   DropTree,
   Selecter,
