@@ -53,14 +53,14 @@ import {
 
 Vue.use(Icon)
     .use(Row)
-    .user(Col)
-    .user(Input)
-    .user(Checkbox)
-    .user(Radio)
-    .user(Steps)
-    .user(Anchor)
-    .user(Tag)
-    .user(Popover)
+    .use(Col)
+    .use(Input)
+    .use(Checkbox)
+    .use(Radio)
+    .use(Steps)
+    .use(Anchor)
+    .use(Tag)
+    .use(Popover)
 ```
 
 组件库同时支持按需引入，
