@@ -35,6 +35,33 @@ import 'advt-ui/dist/style.css'
 Vue.use(AdvtUI)
 
 ```
+因为 `antDesignVue` 库比较大，如果全部加载会让你的项目打包后不好优化，你也可以使用以下代码进行按需引入
+
+```js
+import {
+   Icon,
+   Row,
+   Col,
+   Input,
+   Checkbox,
+   Radio,
+   Steps,
+   Anchor,
+   Tag,
+   Popover
+} from 'ant-design-vue'
+
+Vue.use(Icon)
+    .use(Row)
+    .user(Col)
+    .user(Input)
+    .user(Checkbox)
+    .user(Radio)
+    .user(Steps)
+    .user(Anchor)
+    .user(Tag)
+    .user(Popover)
+```
 
 组件库同时支持按需引入，
 
