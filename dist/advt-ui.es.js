@@ -8781,18 +8781,6 @@ const install = (Vue) => {
   });
 };
 var index = {
-  install,
-  DragWeektime,
-  DropTree: TreeSelect,
-  Selecter,
-  Steper,
-  Moduler,
-  InputLen,
-  TextareaLen,
-  Version,
-  Mixcheck: MixCheck,
-  RowForm,
-  ErrorPop,
-  ICheckbox
+  install
 };
-export { index as default };
+export { CheckItem, DragWeektime, TreeSelect as DropTree, ErrorPop, ICheckbox, InputLen, MixCheck as Mixcheck, Moduler, RadioItem, RowForm, RowItem, Selecter, Steper, TextareaLen, Version, index as default };
