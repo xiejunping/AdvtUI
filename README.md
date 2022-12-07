@@ -35,7 +35,7 @@ import 'advt-ui/dist/style.css'
 Vue.use(AdvtUI)
 
 ```
-因为 `antDesignVue` 库比较大，如果全部加载会让你的项目打包后不好优化，你也可以使用以下代码进行按需引入
+因为 `antDesignVue` 库比较大，如果全部加载会让你的项目打包后不好优化，你也可以使用以下代码进行按需引入。 Icon 是使用Css 字体图标，图标库的使用，会增加css文件的大小
 
 ```js
 import {
