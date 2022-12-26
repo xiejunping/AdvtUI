@@ -25,16 +25,15 @@ export default defineConfig({
   },
   build: {
     sourcemap: false,
-    // rollupOptions: {
-    //   external: ['vue', 'vue-router', 'ant-design-vue'],
-    //   output: {
-    //     globals: {
-    //       vue: 'Vue',
-    //       'vue-router': 'VueRouter',
-    //       'ant-design-vue': 'AntDesignVue'
-    //     }
-    //   }
-    // },
+    rollupOptions: {
+      external: ['vue'],
+      output: {
+        exports: 'named',
+        globals: {
+          vue: 'Vue'
+        }
+      }
+    },
     lib: {
       entry: './packages/index.js',
       name: 'advt-ui'
