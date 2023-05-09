@@ -67,7 +67,7 @@ Vue.use(Icon)
 
 ```js
 
-import { DragWeektime } from 'andt-ui'
+import { DragWeektime } from 'anvt-ui'
 
 Vue.use(DragWeektime)
 
