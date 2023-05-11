@@ -74,6 +74,9 @@ export default {
     transfer: {
       type: Boolean,
       default: true
+    },
+    disabled: {
+      type: Boolean
     }
   },
   data () {

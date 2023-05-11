@@ -33,6 +33,9 @@ export default {
     android: {
       type: Boolean,
       default: false
+    },
+    disabled: {
+      type: Boolean
     }
   },
   computed: {

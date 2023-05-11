@@ -1,6 +1,7 @@
 <template>
   <a-checkbox
     :checked="value"
+    :disabled="disabled"
     :indeterminate="indeterminate"
     @change="change">{{label}}</a-checkbox>
 </template>
@@ -15,6 +16,9 @@ export default {
       type: String
     },
     indeterminate: {
+      type: Boolean
+    },
+    disabled: {
       type: Boolean
     }
   },

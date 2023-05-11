@@ -99,6 +99,9 @@ export default {
       default () {
         return 2
       }
+    },
+    disabled: {
+      type: Boolean
     }
   },
   computed: {
