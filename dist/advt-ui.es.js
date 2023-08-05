@@ -224,6 +224,9 @@ const __vue2_script$f = {
       default() {
         return 2;
       }
+    },
+    disabled: {
+      type: Boolean
     }
   },
   computed: {
@@ -371,7 +374,7 @@ var __component__$f = /* @__PURE__ */ normalizeComponent(
   staticRenderFns$f,
   false,
   __vue2_injectStyles$f,
-  "502d0d99",
+  "61975794",
   null,
   null
 );
@@ -4415,6 +4418,7 @@ var render$d = function() {
   return _c("a-checkbox", {
     attrs: {
       "checked": _vm.value,
+      "disabled": _vm.disabled,
       "indeterminate": _vm.indeterminate
     },
     on: {
@@ -4433,6 +4437,9 @@ const __vue2_script$d = {
       type: String
     },
     indeterminate: {
+      type: Boolean
+    },
+    disabled: {
       type: Boolean
     }
   },
@@ -4744,6 +4751,9 @@ const __vue2_script$b = {
     transfer: {
       type: Boolean,
       default: true
+    },
+    disabled: {
+      type: Boolean
     }
   },
   data() {
@@ -4853,7 +4863,7 @@ var __component__$b = /* @__PURE__ */ normalizeComponent(
   staticRenderFns$b,
   false,
   __vue2_injectStyles$b,
-  "1753433f",
+  "7ac1e9ba",
   null,
   null
 );
@@ -4915,6 +4925,9 @@ const __vue2_script$a = {
     android: {
       type: Boolean,
       default: false
+    },
+    disabled: {
+      type: Boolean
     }
   },
   computed: {
@@ -4947,7 +4960,7 @@ var __component__$a = /* @__PURE__ */ normalizeComponent(
   staticRenderFns$a,
   false,
   __vue2_injectStyles$a,
-  "9efd1348",
+  "1ca4bb52",
   null,
   null
 );
@@ -5895,6 +5908,9 @@ const install = (Vue) => {
     Vue.component(component.name, component);
   });
 };
+if (typeof window !== "undefined" && window.Vue) {
+  install(window.Vue);
+}
 var index = {
   install
 };

@@ -36,7 +36,8 @@ export default defineConfig({
     },
     lib: {
       entry: './packages/index.js',
-      name: 'advt-ui'
+      name: 'advt-ui',
+      fileName: format => `advt-ui.${format}.js`
     }
   }
 })
