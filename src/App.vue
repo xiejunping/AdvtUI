@@ -6,7 +6,7 @@
       </div>
     </a-layout-header>
 
-    <a-layout-content>
+    <a-layout-content class="c-content">
       <div class="g-container">
         <router-view />
       </div>
@@ -21,5 +21,8 @@ export default {
 <style scoped>
 .c-header {
   text-align: center;
+}
+.c-content {
+  overflow: auto;
 }
 </style>

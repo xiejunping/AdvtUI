@@ -2,15 +2,15 @@
   <div class="c-select-box">
     <div class="c-check-all">
       <div class="c-item-select c-cataract" @click="selectAll"></div>
-      <a-checkbox class="c-check-item" v-model="all">全选</a-checkbox>
+      <a-checkbox class="c-check-item" :disabled="disabled" :indeterminate="allIndeterminate" v-model="all">全选</a-checkbox>
     </div>
     <div v-for="item in data" :key="item.id">
       <div v-if="item.children && item.children.length" :class="itemClasses(item)" @click="$emit('on-child', {item, level})">
-        <i-checkbox v-model="item.check" :indeterminate="itemIndeterminate(item)" :label="item.value" />
+        <i-checkbox v-model="item.check" :disabled="disabled" :indeterminate="itemIndeterminate(item)" :label="item.value" />
         <a-icon type="right" class="c-check-arrow" />
         <span class="c-item-checkbox c-cataract" @click="selectItem(item)"></span>
       </div>
-      <i-checkbox v-else class="c-check-item" v-model="item.check" :label="item.value" />
+      <i-checkbox v-else class="c-check-item" v-model="item.check" :label="item.value" :disabled="disabled" />
     </div>
   </div>
 </template>
@@ -39,9 +39,18 @@ export default {
     },
     level: {
       type: Number
+    },
+    disabled: {
+      type: Boolean
+    },
+    indeterminate: {
+      type: Boolean
     }
   },
   computed: {
+    allIndeterminate() {
+      return this.indeterminate && this.data.some(item => item.check) && !this.data.every(item => item.check)
+    },
     itemClasses () {
       return item => {
         const cls = ['c-check-item']
@@ -56,12 +65,14 @@ export default {
   },
   methods: {
     selectAll () {
+      if (this.disabled) return
       this.$emit('on-select', {
         check: !this.all,
         level: this.level
       })
     },
     selectItem (item) {
+      if (this.disabled) return
       this.$emit('on-select', {
         check: !item.check,
         level: this.level,

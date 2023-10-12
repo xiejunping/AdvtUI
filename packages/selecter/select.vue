@@ -12,6 +12,8 @@
                 v-model="box.current"
                 :data="box.data"
                 :level="box.level"
+                :disabled="disabled"
+                :indeterminate="indeterminate"
                 @on-child="pushChild"
                 @on-select="selectAll" />
             </select-item>
@@ -76,6 +78,9 @@ export default {
       default: true
     },
     disabled: {
+      type: Boolean
+    },
+    indeterminate: {
       type: Boolean
     }
   },

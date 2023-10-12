@@ -4483,6 +4483,10 @@ var render$c = function() {
     }
   }), _c("a-checkbox", {
     staticClass: "c-check-item",
+    attrs: {
+      "disabled": _vm.disabled,
+      "indeterminate": _vm.allIndeterminate
+    },
     model: {
       value: _vm.all,
       callback: function($$v) {
@@ -4505,6 +4509,7 @@ var render$c = function() {
       }
     }, [_c("i-checkbox", {
       attrs: {
+        "disabled": _vm.disabled,
         "indeterminate": _vm.itemIndeterminate(item),
         "label": item.value
       },
@@ -4530,7 +4535,8 @@ var render$c = function() {
     })], 1) : _c("i-checkbox", {
       staticClass: "c-check-item",
       attrs: {
-        "label": item.value
+        "label": item.value,
+        "disabled": _vm.disabled
       },
       model: {
         value: item.check,
@@ -4568,9 +4574,18 @@ const __vue2_script$c = {
     },
     level: {
       type: Number
+    },
+    disabled: {
+      type: Boolean
+    },
+    indeterminate: {
+      type: Boolean
     }
   },
   computed: {
+    allIndeterminate() {
+      return this.indeterminate && this.data.some((item) => item.check) && !this.data.every((item) => item.check);
+    },
     itemClasses() {
       return (item) => {
         const cls = ["c-check-item"];
@@ -4585,12 +4600,16 @@ const __vue2_script$c = {
   },
   methods: {
     selectAll() {
+      if (this.disabled)
+        return;
       this.$emit("on-select", {
         check: !this.all,
         level: this.level
       });
     },
     selectItem(item) {
+      if (this.disabled)
+        return;
       this.$emit("on-select", {
         check: !item.check,
         level: this.level,
@@ -4632,7 +4651,7 @@ var __component__$c = /* @__PURE__ */ normalizeComponent(
   staticRenderFns$c,
   false,
   __vue2_injectStyles$c,
-  "6fdc22c7",
+  "a956181c",
   null,
   null
 );
@@ -4671,7 +4690,9 @@ var render$b = function() {
     }, [_c("select-box", {
       attrs: {
         "data": box.data,
-        "level": box.level
+        "level": box.level,
+        "disabled": _vm.disabled,
+        "indeterminate": _vm.indeterminate
       },
       on: {
         "on-child": _vm.pushChild,
@@ -4753,6 +4774,9 @@ const __vue2_script$b = {
       default: true
     },
     disabled: {
+      type: Boolean
+    },
+    indeterminate: {
       type: Boolean
     }
   },
@@ -4863,7 +4887,7 @@ var __component__$b = /* @__PURE__ */ normalizeComponent(
   staticRenderFns$b,
   false,
   __vue2_injectStyles$b,
-  "7ac1e9ba",
+  "61480602",
   null,
   null
 );
